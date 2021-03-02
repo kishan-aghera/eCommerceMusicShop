@@ -51,7 +51,7 @@ group :development do
   gem 'spring'
   gem 'better_errors'
   gem 'guard'
-  gem 'guard-livereload'
+  gem 'guard-livereload', require: false
 end
 
 group :test do
