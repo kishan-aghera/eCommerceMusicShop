@@ -7,11 +7,13 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'instrument', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= yield (:body_class) %>">
     <% if flash[:notice] %>
       <div class="notification is-success global-notification">
         <p class="notice"><%= notice %></p>
@@ -41,17 +43,17 @@
           <div class="navbar-item">
             <div class="field is-grouped">
 
-            <%# if total_cart_items %>
-              <%#= link_to cart_path(@cart), class:"navbar-item button is-warning" do %>
-              <!--<span class="icon is-small">
+            <% if cart_has_items %>
+              <%= link_to cart_path(@cart), class:"navbar-item button is-warning" do %>
+              <span class="icon is-small">
                 <i class="fa fa-shopping-cart"></i>
               </span>
               <span>Cart
-                <%#= cart_count_over_one %>
+                <%= cart_count_over_one %>
                 </span>
-              <%# end %>
-            <%# end %>
-              -->
+              <% end %>
+            <% end %>
+              
             <% if user_signed_in? %>
               <%= link_to 'Sell', '#', class: "navbar-item button is-dark" %>
 
